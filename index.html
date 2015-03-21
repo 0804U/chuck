@@ -1,0 +1,74 @@
+<!DOCTYPE html>  
+<html>
+    <head>  
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no">
+        <meta name="HandheldFriendly" content="true" />
+        <meta name="robots" content="noindex,nofollow" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta name="apple-mobile-web-app-title" content="Phaser App">
+        <meta name="viewport" content="initial-scale=1 maximum-scale=1 user-scalable=0 minimal-ui" />
+        <title>Chuck</title>
+
+        <!-- CORE JS FILES -->
+        <script src="core/jquery-2.1.3.min.js"></script>
+        <script type="text/javascript" src="core/phaser.min.js"></script>
+        <script src="classes/Class.js"></script>
+
+        <!-- STATES -->
+        <script src="states/boot.js"></script>
+        <script src="states/preloader.js"></script>
+        <script src="states/mainmenu.js"></script>
+        <script src="states/play.js"></script>
+        
+        <!-- CLASSES -->
+        <script src="classes/Tree.js"></script>
+        <script src="classes/Player.js"></script>
+        <script src="classes/Log.js"></script>
+        <script src="classes/Shop.js"></script>
+        <script src="classes/Powerup.js"></script>
+        <script src="classes/Inventory.js"></script>
+        <script src="classes/Item.js"></script>
+        <script src="classes/Click.js"></script>
+        <script src="classes/Speech.js"></script>
+        <script src="classes/Achievements.js"></script>
+        <style>
+            @font-face {
+                font-family: 'BitmapFont';
+                src: url('assets/fonts/font.TTF'); /*URL to font*/
+            }
+            body, html {
+                padding: 0;
+                margin: 0;
+            }
+            canvas {
+                cursor: url(assets/pointer-small.png) 9 0, auto !important; 
+            }
+        </style>
+    </head>
+    <body>
+        <div id="game"></div>
+        <script type="text/javascript">
+            window.onload = function() {
+                var game = new Phaser.Game(320, 480, Phaser.AUTO, 'game');
+
+                WebFontConfig = {
+                    google: {
+                        families: ['Press+Start+2P']
+                    }
+                };
+
+                game.state.add('Boot', Chuck.Boot);
+                game.state.add('Preloader', Chuck.Preloader);
+                game.state.add('MainMenu', Chuck.MainMenu);
+                game.state.add('Play', Chuck.Play);
+                game.state.start('Boot');
+            };
+            
+            window.onbeforeunload = function(){
+               Chuck.PlayerActor.saveGameData();
+            }
+        </script>
+    </body>  
+</html>  
